@@ -15,7 +15,6 @@
             overflow: hidden;
             position: relative;
         }
-
         h1 {
             font-size: 3em;
             display: flex;
@@ -27,26 +26,22 @@
             position: absolute; 
             top: 20px;
         }
-
         span {
             opacity: 0;
             transform: translateY(20px);
             animation: fadeIn 0.5s forwards, jump 0.5s forwards, rainbowColor 5s infinite alternate;
             margin: 0 5px;
         }
-
         @keyframes fadeIn {
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
-
         @keyframes jump {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-20px); }
         }
-
         @keyframes rainbowColor {
             0% { color: #ff6347; }
             20% { color: #ffeb3b; }
@@ -55,7 +50,6 @@
             80% { color: #9c27b0; }
             100% { color: #ff4081; }
         }
-
         .cake {
             position: absolute;
             bottom: 60px;
@@ -67,43 +61,38 @@
             animation: cakeBounce 1s infinite, cakeIn 0.5s forwards;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
         }
-
         @keyframes cakeIn {
             from { transform: translateY(100%); }
             to { transform: translateY(0); }
         }
-
         .candle {
             position: absolute;
-            bottom: 130px; 
+            bottom: 130px; /* Ajusta la altura de la vela */
             width: 12px;
             height: 30px;
-            background-color: #fff; 
+            background-color: #fff; /* Color de la vela */
             border-radius: 5px;
             left: 50%;
             transform: translateX(-50%);
-            animation: candleFlicker 1s infinite;
+            animation: candleFlicker 1s infinite; /* Animación de parpadeo de la vela */
         }
-
         .flame {
             position: absolute;
-            bottom: 30px; 
+            bottom: 30px; /* Ajusta la posición de la llama */
             left: 50%;
             width: 8px;
-            height: 12px; 
-            background-color: #ffcc00; 
+            height: 12px; /* Altura de la llama */
+            background-color: #ffcc00; /* Color de la llama */
             border-radius: 50%;
             transform: translateX(-50%);
             animation: flameFlicker 0.5s infinite alternate;
-            box-shadow: 0 0 10px rgba(255, 204, 0, 0.8);
+            box-shadow: 0 0 10px rgba(255, 204, 0, 0.8); /* Brillo de la llama */
         }
-
         @keyframes flameFlicker {
             0% { transform: translateX(-50%) scale(1); }
             50% { transform: translateX(-50%) scale(1.2); }
             100% { transform: translateX(-50%) scale(1); }
         }
-
         @keyframes candleFlicker {
             0%, 100% { transform: translateX(-50%); }
             50% { transform: translateX(-50%) translateY(-2px); }
@@ -116,10 +105,9 @@
             background-color: #ff6347; 
             border-radius: 50% 50% 40% 40%; 
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-            bottom: -100px; 
+            bottom: -100px; /* Posición inicial más baja */
             animation: float 4s linear infinite;
         }
-
         .balloon:before {
             content: '';
             position: absolute;
@@ -131,12 +119,11 @@
             left: 50%;
             transform: translateX(-50%);
         }
-
         .balloon:after {
             content: '';
             position: absolute;
             width: 4px;
-            height: 25px; 
+            height: 25px; /* Altura de la cuerda */
             background-color: #000; 
             bottom: -25px; 
             left: 50%;
@@ -157,7 +144,6 @@
             opacity: 0.8;
             animation: fall 3s infinite;
         }
-
         @keyframes fall {
             0% { transform: translateY(0); }
             100% { transform: translateY(600px); }
@@ -165,12 +151,12 @@
 
         /* Media Queries */
         @media (max-width: 768px) {
-            h1 { font-size: 2em; }
+            h1 { font-size: 2.5em; }
             .cake { width: 100px; height: 100px; }
             .candle { width: 10px; height: 25px; }
         }
         @media (max-width: 480px) {
-            h1 { font-size: 1.5em; }
+            h1 { font-size: 2em; }
             .cake { width: 80px; height: 80px; }
             .candle { width: 8px; height: 20px; }
         }
@@ -237,4 +223,3 @@
     </script>
 </body>
 </html>
-
