@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end; 
+            height: 100vh;
+            background-color: #ffcccb;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            overflow: hidden;
+            position: relative;
+        }
+        h1 {
+            font-size: 3em;
+            display: flex;
+            z-index: 2;
+            text-align: center;
+            white-space: nowrap;
+            overflow: hidden;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.8), 0 0 20px rgba(255, 215, 0, 0.5);
+            position: absolute; 
+            top: 20px;
+        }
+        span {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.5s forwards, jump 0.5s forwards, rainbowColor 5s infinite alternate;
+            margin: 0 5px;
+        }
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes jump {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        @keyframes rainbowColor {
+            0% { color: #ff6347; }
+            20% { color: #ffeb3b; }
+            40% { color: #4caf50; }
+            60% { color: #2196f3; }
+            80% { color: #9c27b0; }
+            100% { color: #ff4081; }
+        }
+        .cake {
+            position: absolute;
+            bottom: 60px;
+            width: 150px;
+            height: 150px;
+            background: linear-gradient(to top, #ff69b4, #ff1493);
+            border-radius: 10px 10px 0 0;
+            z-index: 1;
+            animation: cakeBounce 1s infinite, cakeIn 0.5s forwards;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+        }
+        @keyframes cakeIn {
+            from { transform: translateY(100%); }
+            to { transform: translateY(0); }
+        }
+        .candle {
+            position: absolute;
+            bottom: 130px; /* Ajusta la altura de la vela */
+            width: 12px;
+            height: 30px;
+            background-color: #fff; /* Color de la vela */
+            border-radius: 5px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: candleFlicker 1s infinite; /* Animación de parpadeo de la vela */
+        }
+        .flame {
+            position: absolute;
+            bottom: 30px; /* Ajusta la posición de la llama */
+            left: 50%;
+            width: 8px;
+            height: 12px; /* Altura de la llama */
+            background-color: #ffcc00; /* Color de la llama */
+            border-radius: 50%;
+            transform: translateX(-50%);
+            animation: flameFlicker 0.5s infinite alternate;
+            box-shadow: 0 0 10px rgba(255, 204, 0, 0.8); /* Brillo de la llama */
+        }
+        @keyframes flameFlicker {
+            0% { transform: translateX(-50%) scale(1); }
+            50% { transform: translateX(-50%) scale(1.2); }
+            100% { transform: translateX(-50%) scale(1); }
+        }
+        @keyframes candleFlicker {
+            0%, 100% { transform: translateX(-50%); }
+            50% { transform: translateX(-50%) translateY(-2px); }
+        }
+
+        .balloon {
+            position: absolute;
+            width: 50px; 
+            height: 70px; 
+            background-color: #ff6347; 
+            border-radius: 50% 50% 40% 40%; 
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            bottom: -100px; /* Posición inicial más baja */
+            animation: float 4s linear infinite;
+        }
+        .balloon:before {
+            content: '';
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #000; 
+            border-radius: 50%;
+            bottom: 10px; 
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .balloon:after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            height: 25px; /* Altura de la cuerda */
+            background-color: #000; 
+            bottom: -25px; 
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-100vh); }
+        }
+
+        /* Estilo para el confeti */
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #ffeb3b;
+            opacity: 0.8;
+            animation: fall 3s infinite;
+        }
+        @keyframes fall {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(600px); }
+        }
+
+        /* Media Queries */
+        @media (max-width: 768px) {
+            h1 { font-size: 2em; }
+            .cake { width: 100px; height: 100px; }
+            .candle { width: 10px; height: 25px; }
+        }
+        @media (max-width: 480px) {
+            h1 { font-size: 1.5em; }
+            .cake { width: 80px; height: 80px; }
+            .candle { width: 8px; height: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <h1 id="message"></h1>
+    <div class="cake">
+        <div class="candle">
+            <div class="flame"></div>
+        </div>
+    </div>
+
+    <script>
+        const message = "HAPPY BIRTHDAY, BAE!";
+        const colors = [
+            "#ff6347", "#ffeb3b", "#4caf50", "#2196f3",
+            "#9c27b0", "#ff4081", "#ff4500", "#ffa500", "#00bfff"
+        ];
+
+        const h1 = document.getElementById('message');
+
+        message.split('').forEach((letter, index) => {
+            const span = document.createElement('span');
+            span.textContent = letter;
+            span.style.color = colors[index % colors.length];
+            span.style.animationDelay = `${index * 0.1}s`;
+            h1.appendChild(span);
+        });
+
+        // Crear globos
+        function createBalloon() {
+            const balloon = document.createElement('div');
+            balloon.classList.add('balloon');
+            const balloonColors = [
+                "#ff6347", "#ffeb3b", "#4caf50", "#2196f3", 
+                "#9c27b0", "#ff4081", "#ff4500", "#ffa500", "#00bfff"
+            ];
+            balloon.style.backgroundColor = balloonColors[Math.floor(Math.random() * balloonColors.length)];
+            balloon.style.left = `${Math.random() * 100}vw`;
+            balloon.style.animationDuration = `${Math.random() * 3 + 3}s`;
+            document.body.appendChild(balloon);
+
+            // Eliminar el globo después de la animación
+            setTimeout(() => {
+                balloon.remove();
+            }, 6000);
+        }
+
+        // Crear múltiples globos
+        setInterval(createBalloon, 500); // Intervalo para crear globos
+
+        // Crear confeti
+        for (let i = 0; i < 200; i++) {
+            const confetti = document.createElement('div');
+            confetti.classList.add('confetti');
+            confetti.style.left = `${Math.random() * 100}vw`;
+            confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            confetti.style.animationDuration = `${Math.random() * 2 + 2}s`;
+            confetti.style.animationDelay = `${Math.random() * 5}s`;
+            confetti.style.top = `${Math.random() * 50}px`;
+            document.body.appendChild(confetti);
+        }
+    </script>
+</body>
+</html>
+
